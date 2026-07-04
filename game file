@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+
+    <!-- Replace with your registered email -->
+    <!-- your_registered_email@example.com -->
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .container {
+            background: white;
+            max-width: 500px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,.2);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 6px;
+            background: #007BFF;
+            color: white;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #score {
+            margin-top: 15px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Rock Paper Scissors</h1>
+
+    <p>Choose your move:</p>
+
+    <button id="rock">🪨 Rock</button>
+    <button id="paper">📄 Paper</button>
+    <button id="scissors">✂️ Scissors</button>
+
+    <div id="result">Make your choice!</div>
+    <div id="score">
+        Player: 0 | Computer: 0
+    </div>
+</div>
+
+<script>
+    // Variable to track game state
+    let playerScore = 0;
+    let computerScore = 0;
+
+    const choices = ["Rock", "Paper", "Scissors"];
+
+    function playGame(playerChoice) {
+        const computerChoice =
+            choices[Math.floor(Math.random() * choices.length)];
+
+        let message = "";
+
+        // if / else game rules
+        if (playerChoice === computerChoice) {
+            message = "It's a Draw!";
+        } else if (
+            (playerChoice === "Rock" && computerChoice === "Scissors") ||
+            (playerChoice === "Paper" && computerChoice === "Rock") ||
+            (playerChoice === "Scissors" && computerChoice === "Paper")
+        ) {
+            playerScore++;
+            message = "You Win!";
+        } else {
+            computerScore++;
+            message = "Computer Wins!";
+        }
+
+        // Update the DOM
+        document.getElementById("result").textContent =
+            `You: ${playerChoice} | Computer: ${computerChoice} — ${message}`;
+
+        document.getElementById("score").textContent =
+            `Player: ${playerScore} | Computer: ${computerScore}`;
+    }
+
+    // User events using addEventListener
+    document.getElementById("rock").addEventListener("click", function () {
+        playGame("Rock");
+    });
+
+    document.getElementById("paper").addEventListener("click", function () {
+        playGame("Paper");
+    });
+
+    document.getElementById("scissors").addEventListener("click", function () {
+        playGame("Scissors");
+    });
+</script>
+
+</body>
+</html>
